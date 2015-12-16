@@ -1,4 +1,4 @@
-;;;; core/src/byte-char-output.lisp
+;;;; core/src/output-byte-char.lisp
 
 (in-package #:tstreams)
 

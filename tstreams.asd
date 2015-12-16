@@ -19,18 +19,18 @@
                  (:file "output" :depends-on ("package"
                                               "generics"
                                               "base"))
-                 (:file "char-output" :depends-on ("package"
+                 (:file "output-char" :depends-on ("package"
                                                    "output"))
-                 (:file "char-char-output" :depends-on ("package"
-                                                        "char-output"))
-                 (:file "char-byte-output" :depends-on ("package"
-                                                        "char-output"))
-                 (:file "byte-output" :depends-on ("package"
+                 (:file "output-char-char" :depends-on ("package"
+                                                        "output-char"))
+                 (:file "output-char-byte" :depends-on ("package"
+                                                        "output-char"))
+                 (:file "output-byte" :depends-on ("package"
                                                    "output"))
-                 (:file "byte-char-output" :depends-on ("package"
-                                                        "byte-output"))
-                 (:file "byte-byte-output" :depends-on ("package"
-                                                        "byte-output"))))))
+                 (:file "output-byte-char" :depends-on ("package"
+                                                        "output-byte"))
+                 (:file "output-byte-byte" :depends-on ("package"
+                                                        "output-byte"))))))
 
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."
