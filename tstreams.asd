@@ -13,7 +13,24 @@
   ((:static-file "README.md")
    (:module "core/src"
     :components ((:file "package")
-                 (:file "generics" :depends-on ("package"))))))
+                 (:file "generics" :depends-on ("package"))
+                 (:file "base" :depends-on ("package"
+                                            "generics"))
+                 (:file "output" :depends-on ("package"
+                                              "generics"
+                                              "base"))
+                 (:file "char-output" :depends-on ("package"
+                                                   "output"))
+                 (:file "char-char-output" :depends-on ("package"
+                                                        "char-output"))
+                 (:file "char-byte-output" :depends-on ("package"
+                                                        "char-output"))
+                 (:file "byte-output" :depends-on ("package"
+                                                   "output"))
+                 (:file "byte-char-output" :depends-on ("package"
+                                                        "byte-output"))
+                 (:file "byte-byte-output" :depends-on ("package"
+                                                        "byte-output"))))))
 
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."

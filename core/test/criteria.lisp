@@ -50,3 +50,23 @@
       "No such function ~A in package ~A" sym package)
      ((documentation fn t)
       "Function ~A is not documented in package ~A" sym package))))
+
+(nst:def-criterion (classp (&optional (package :tstreams)) (sym))
+  (let* ((psym (find-package-symbol sym package))
+         (class (when psym (find-class psym))))
+    (criterion-assert-case
+     (psym
+      "Symbol ~A does not exist in package ~A" sym package)
+     (class
+      "No such class ~A in package ~A" sym package))))
+
+(nst:def-criterion (cdocumentationp (&optional (package :tstreams)) (sym))
+  (let* ((psym (find-package-symbol sym package))
+         (class (when psym (find-class psym))))
+    (criterion-assert-case
+     (psym
+      "Symbol ~A does not exist in package ~A" sym package)
+     (class
+      "No such class ~A in package ~A" sym package)
+     ((documentation class t)
+      "Class ~A is not documented in package ~A" sym package))))
