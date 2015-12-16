@@ -11,6 +11,7 @@
              (uiop:symbol-call :tstreams-test :run-all-tests))
   :components
   ((:static-file "README.md")
+   (:static-file "NOTES.md")
    (:module "core/src"
     :components ((:file "package")
                  (:file "generics" :depends-on ("package"))
