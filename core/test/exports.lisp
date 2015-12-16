@@ -3,6 +3,22 @@
 (in-package #:tstreams-test)
 
 (nst:def-test-group exports ()
+  (nst:def-test exports-predicates (:each (:all publicp
+                                                fdocumentationp))
+    '(#:tstreamp
+      #:output-tstream-p
+      #:character-output-tstream-p
+      #:character-to-character-output-tstream-p
+      #:character-to-binary-output-tstream-p
+      #:binary-output-tstream-p
+      #:binary-to-character-output-tstream-p
+      #:binary-to-binary-output-tstream-p))
+
+  (nst:def-test exports-constructors (:each (:all publicp
+                                                  fdocumentationp))
+    '(#:make-noop-character-to-character-output-tstream
+      #:make-noop-binary-to-binary-output-tstream))
+
   (nst:def-test exports-output-generics (:each (:all publicp
                                                      genericp
                                                      fdocumentationp))
@@ -18,17 +34,6 @@
       #:bytes-from-character-input-stream
       #:characters-from-binary-input-stream
       #:bytes-from-binary-input-stream))
-
-  (nst:def-test exports-predicates (:each (:all publicp
-                                                fdocumentationp))
-    '(#:tstreamp
-      #:output-tstream-p
-      #:character-output-tstream-p
-      #:character-to-character-output-tstream-p
-      #:character-to-binary-output-tstream-p
-      #:binary-output-tstream-p
-      #:binary-to-character-output-tstream-p
-      #:binary-to-binary-output-tstream-p))
 
   (nst:def-test exports-output-classes (:each (:all publicp
                                                     classp

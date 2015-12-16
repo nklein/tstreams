@@ -38,6 +38,7 @@
   :version "0.1.20151216"
   :license "UNLICENSE"
   :depends-on ((:version #:tstreams "0.1.20151216")
+               #:fast-io
                #:nst)
   :components
   ((:module "core/test"
@@ -45,5 +46,8 @@
                  (:file "criteria" :depends-on ("package"))
                  (:file "exports" :depends-on ("package"
                                                "criteria"))
+                 (:file "output" :depends-on ("package"
+                                              "exports"))
                  (:file "run" :depends-on ("package"
-                                           "exports"))))))
+                                           "exports"
+                                           "output"))))))

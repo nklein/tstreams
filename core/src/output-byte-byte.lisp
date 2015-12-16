@@ -21,3 +21,17 @@
     "The default method for converting bytes to bytes is simply to
 copy them to the output stream."
     (write-sequence bytes stream)))
+
+(defun make-noop-binary-to-binary-output-tstream
+    (underlying-output-stream
+     &key close-underlying-stream-on-close)
+  "Create a BINARY-TO-BINARY-OUTPUT-TSTREAM which takes any
+input bytes given to it and passes them along untouched to the
+given byte output stream UNDERLYING-OUTPUT-STREAM.
+
+If CLOSE-UNDERLYING-STREAM-ON-CLOSE is non-NIL then closing the
+returned stream will also close the UNDERLYING-OUTPUT-STREAM."
+  (assert (binary-output-stream-p underlying-output-stream))
+  (make-instance 'binary-to-binary-output-tstream
+                 :underlying-stream underlying-output-stream
+                 :close-underlying-stream close-underlying-stream-on-close))

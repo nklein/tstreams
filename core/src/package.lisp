@@ -16,7 +16,8 @@
   ;; char-char-output.lisp
   (:export #:character-to-character-output-tstream
            #:character-to-character-output-tstream-p
-           #:characters-to-character-output-stream)
+           #:characters-to-character-output-stream
+           #:make-noop-character-to-character-output-tstream)
   ;; char-byte-output.lisp
   (:export #:character-to-binary-output-tstream
            #:character-to-binary-output-tstream-p
@@ -30,4 +31,5 @@
   ;; byte-byte-output.lisp
   (:export #:binary-to-binary-output-tstream
            #:binary-to-binary-output-tstream-p
-           #:bytes-to-binary-output-stream))
+           #:bytes-to-binary-output-stream
+           #:make-noop-binary-to-binary-output-tstream))
