@@ -3,32 +3,30 @@
 (defpackage #:tstreams
   (:use #:cl)
   ;; generics.lisp (input streams)
-  (:export #:characters-from-character-input-stream
-           #:bytes-from-character-input-stream
-           #:characters-from-binary-input-stream
-           #:bytes-from-binary-input-stream)
+  (:export #:characters-from-input-stream
+           #:bytes-from-input-stream)
   ;; base.lisp
   (:export #:tstreamp)
   ;; output.lisp
   (:export #:output-tstream-p)
-  ;; char-output.lisp
-  (:export #:character-output-tstream-p)
-  ;; char-char-output.lisp
+  ;; output-char.lisp
+  (:export #:character-output-tstream-p
+           #:characters-to-output-stream)
+  ;; output-char-char.lisp
   (:export #:character-to-character-output-tstream
            #:character-to-character-output-tstream-p
-           #:characters-to-character-output-stream
            #:make-noop-character-to-character-output-tstream)
-  ;; char-byte-output.lisp
+  ;; output-char-byte.lisp
   (:export #:character-to-binary-output-tstream
            #:character-to-binary-output-tstream-p
            #:characters-to-binary-output-stream)
-  ;; byte-output.lisp
-  (:export #:binary-output-tstream-p)
-  ;; byte-char-output.lisp
+  ;; output-byte.lisp
+  (:export #:binary-output-tstream-p
+           #:bytes-to-output-stream)
+  ;; output-byte-char.lisp
   (:export #:binary-to-character-output-tstream
-           #:binary-to-character-output-tstream-p
-           #:bytes-to-character-output-stream)
-  ;; byte-byte-output.lisp
+           #:binary-to-character-output-tstream-p)
+  ;; output-byte-byte.lisp
   (:export #:binary-to-binary-output-tstream
            #:binary-to-binary-output-tstream-p
            #:bytes-to-binary-output-stream

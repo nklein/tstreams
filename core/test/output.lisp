@@ -24,7 +24,6 @@
     (with-open-stream (out (make-string-output-stream))
       (tstreams:make-noop-character-to-character-output-tstream out)))
 
-  #+notyet
   (nst:def-test character-to-character-noop-is-noop (:equalp "abcdefghij")
     (with-output-to-string (out)
       (with-open-stream
@@ -34,7 +33,7 @@
         (write-char #\e noop)
         (write-char #\f noop)
         (write-char #\g noop)
-        (write-string "hij" noop))))
+        (format noop "hij"))))
 
   (nst:def-test binary-to-binary-noop-type
       (:all

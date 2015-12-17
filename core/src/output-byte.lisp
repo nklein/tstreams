@@ -11,3 +11,8 @@
 (defun binary-output-tstream-p (obj)
   "Return whether OBJ is an instance of BINARY-OUTPUT-TSTREAM"
   (typep obj 'binary-output-tstream))
+
+(defgeneric bytes-to-output-stream (self bytes stream)
+  (:documentation "With the given TSTREAM instance SELF, transform the
+  given sequence of bytes BYTES out to the underlying output
+  stream STREAM."))

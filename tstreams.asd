@@ -17,10 +17,12 @@
                  (:file "generics" :depends-on ("package"))
                  (:file "base" :depends-on ("package"
                                             "generics"))
+                 (:file "buffer-char" :depends-on ("package"))
                  (:file "output" :depends-on ("package"
                                               "generics"
                                               "base"))
                  (:file "output-char" :depends-on ("package"
+                                                   "buffer-char"
                                                    "output"))
                  (:file "output-char-char" :depends-on ("package"
                                                         "output-char"))

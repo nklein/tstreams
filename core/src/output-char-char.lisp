@@ -18,15 +18,11 @@
   "Return whether OBJ is an instance of CHARACTER-TO-CHARACTER-OUTPUT-TSTREAM."
   (typep obj 'character-to-character-output-tstream))
 
-(defgeneric characters-to-character-output-stream (self string stream)
-  (:documentation "With the given TSTREAM instance SELF, transform the
-  given string STRING out to the underlying character output stream
-  STREAM.")
-
-  (:method ((self character-to-character-output-tstream) string stream)
-    "The default method for converting characters to characters is
+(defmethod characters-to-output-stream
+    ((self character-to-character-output-tstream) string stream)
+  "The default method for converting characters to characters is
 simply to copy them to the output stream."
-    (write-string string stream)))
+  (write-string string stream))
 
 (defun make-noop-character-to-character-output-tstream
     (underlying-output-stream

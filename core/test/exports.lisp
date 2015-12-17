@@ -22,18 +22,14 @@
   (nst:def-test exports-output-generics (:each (:all publicp
                                                      genericp
                                                      fdocumentationp))
-    '(#:characters-to-character-output-stream
-      #:bytes-to-character-output-stream
-      #:characters-to-binary-output-stream
-      #:bytes-to-binary-output-stream))
+    '(#:characters-to-output-stream
+      #:bytes-to-output-stream))
 
   (nst:def-test exports-input-generics (:each (:all publicp
                                                     genericp
                                                     fdocumentationp))
-    '(#:characters-from-character-input-stream
-      #:bytes-from-character-input-stream
-      #:characters-from-binary-input-stream
-      #:bytes-from-binary-input-stream))
+    '(#:characters-from-input-stream
+      #:bytes-from-input-stream))
 
   (nst:def-test exports-output-classes (:each (:all publicp
                                                     classp
