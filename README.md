@@ -41,6 +41,17 @@ Then on the reading side:
                               base64-stream))
           (read-stuff-from-stream utf8-stream))))
 
+XXX: Should add a `WITH-OPEN-STREAMS*` macro to streamline the above:
+
+    (with-open-streams*
+        ((out-stream (open out-filename :direction :output))
+         (base64-stream (make-base64-binary-to-character-output-tstream
+                           out-stream))
+         (utf8-stream (make-utf8-character-to-binary-output-tstream
+                         base64-stream)))
+      (write-string "π ⠏⠊, θ ⠮⠞⠁" utf8-stream)
+      (write-more-stuff-to-stream utf8-stream))
+
 Class Hierarchy
 ---------------
 
