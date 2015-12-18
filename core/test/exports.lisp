@@ -16,6 +16,10 @@
       #:binary-to-character-output-tstream-p
       #:binary-to-binary-output-tstream-p))
 
+  (nst:def-test exports-macros (:each (:all publicp
+                                            fdocumentationp))
+    '(#:with-open-streams*))
+
   (nst:def-test exports-constructors (:each (:all publicp
                                                   fdocumentationp))
     '(#:make-noop-character-to-character-output-tstream

@@ -20,29 +20,6 @@ Suppose you need to write Unicode characters to a file which, because
 of the way that it will be delivered, can only contain 7-bit clean
 ASCII characters.  You might do something like this:
 
-    (with-open-file (out-stream out-filename :direction :output)
-      (with-open-stream (base64-stream
-                         (make-base64-binary-to-character-output-tstream
-                            out-stream))
-        (with-open-stream (utf8-stream
-                           (make-utf8-character-to-binary-output-tstream
-                              base64-stream))
-          (write-string "π ⠏⠊, θ ⠮⠞⠁" utf8-stream)
-          (write-more-stuff-to-stream utf8-stream))))
-
-Then on the reading side:
-
-    (with-open-file (in-stream in-filename)
-      (with-open-stream (base64-stream
-                         (make-base64-character-to-binary-input-tstream
-                            in-stream))
-        (with-open-stream (utf8-stream
-                           (make-utf8-binary-to-character-input-tstream
-                              base64-stream))
-          (read-stuff-from-stream utf8-stream))))
-
-XXX: Should add a `WITH-OPEN-STREAMS*` macro to streamline the above:
-
     (with-open-streams*
         ((out-stream (open out-filename :direction :output))
          (base64-stream (make-base64-binary-to-character-output-tstream
@@ -51,6 +28,17 @@ XXX: Should add a `WITH-OPEN-STREAMS*` macro to streamline the above:
                          base64-stream)))
       (write-string "π ⠏⠊, θ ⠮⠞⠁" utf8-stream)
       (write-more-stuff-to-stream utf8-stream))
+
+Then on the reading side:
+
+    (with-open-streams*
+        ((in-stream (open in-filename))
+         (base64-stream (make-base64-character-to-binary-input-tstream
+                         in-stream))
+         (utf8-stream (make-utf8-binary-to-character-input-tstream
+                       base64-stream)))
+      (read-stuff-from-stream utf8-stream))
+
 
 Class Hierarchy
 ---------------

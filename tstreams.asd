@@ -14,6 +14,7 @@
    (:static-file "NOTES.md")
    (:module "core/src"
     :components ((:file "package")
+                 (:file "utility" :depends-on ("package"))
                  (:file "generics" :depends-on ("package"))
                  (:file "base" :depends-on ("package"
                                             "generics"))

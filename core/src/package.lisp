@@ -2,6 +2,8 @@
 
 (defpackage #:tstreams
   (:use #:cl)
+  ;; utility.lisp
+  (:export #:with-open-streams*)
   ;; generics.lisp (input streams)
   (:export #:characters-from-input-stream
            #:bytes-from-input-stream)

@@ -78,6 +78,21 @@
         (push (get-output-stream-string out) lines))
       (reverse lines)))
 
+  (nst:def-test character-to-character-pipeline (:equalp "abcdefghij")
+    (with-output-to-string (out)
+      (tstreams:with-open-streams*
+          ((third (tstreams:make-noop-character-to-character-output-tstream
+                   out))
+           (second (tstreams:make-noop-character-to-character-output-tstream
+                    third))
+           (first (tstreams:make-noop-character-to-character-output-tstream
+                   second)))
+        (write-string "abcd" first)
+        (write-char #\e first)
+        (write-char #\f first)
+        (write-char #\g first)
+        (format first "hij"))))
+
   (nst:def-test binary-to-binary-noop-type
       (:all
        (:predicate tstreams:tstreamp)
