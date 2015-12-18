@@ -35,6 +35,49 @@
         (write-char #\g noop)
         (format noop "hij"))))
 
+  (nst:def-test character-to-character-noop-line-buffer
+      (:seq (:equalp "")
+            (:equalp (format nil "abcd~%efg~%"))
+            (:equalp "")
+            (:equalp (format nil "hij~%klm")))
+    (let ((lines))
+      (with-open-stream (out (make-string-output-stream))
+        (with-open-stream
+            (noop (tstreams:make-noop-character-to-character-output-tstream
+                   out
+                   :block-size :line
+                   :blocks-per-buffer 2))
+          (format noop "abcd~%")
+          (push (get-output-stream-string out) lines)
+          (format noop "efg~%")
+          (push (get-output-stream-string out) lines)
+          (format noop "hij~%")
+          (format noop "klm")
+          (push (get-output-stream-string out) lines))
+        (push (get-output-stream-string out) lines))
+      (reverse lines)))
+
+  (nst:def-test character-to-character-noop-character-buffer
+      (:seq (:equalp "")
+            (:equalp "abcdefgh")
+            (:equalp "ijklmnop")
+            (:equalp "qrs"))
+    (let ((lines))
+      (with-open-stream (out (make-string-output-stream))
+        (with-open-stream
+            (noop (tstreams:make-noop-character-to-character-output-tstream
+                   out
+                   :block-size 4
+                   :blocks-per-buffer 2))
+          (format noop "abcdefg")
+          (push (get-output-stream-string out) lines)
+          (format noop "hijkl")
+          (push (get-output-stream-string out) lines)
+          (format noop "mnopqrs")
+          (push (get-output-stream-string out) lines))
+        (push (get-output-stream-string out) lines))
+      (reverse lines)))
+
   (nst:def-test binary-to-binary-noop-type
       (:all
        (:predicate tstreams:tstreamp)

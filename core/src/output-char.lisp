@@ -11,22 +11,25 @@
 
 (defmethod initialize-instance :before ((stream character-output-tstream)
                                         &key
-                                          (minimum-buffer-size 1)
-                                          (preferred-buffer-size 512)
+                                          (block-size 1)
+                                          (blocks-per-buffer
+                                           (if (numberp block-size)
+                                               512
+                                               1))
                                           &allow-other-keys)
-  (check-type minimum-buffer-size (or (integer 1 *) (member :line)))
-  (check-type preferred-buffer-size (integer 1 *))
+  (check-type block-size (or (integer 1 *) (member :line)))
+  (check-type blocks-per-buffer (integer 1 *))
 
   (flet ((flush-buffer (string)
            (characters-to-output-stream stream
                                         string
                                         (underlying-stream stream))))
 
-    (let ((buffer (if (eql minimum-buffer-size :line)
-                      (make-line-buffer preferred-buffer-size
+    (let ((buffer (if (eql block-size :line)
+                      (make-line-buffer blocks-per-buffer
                                         #'flush-buffer)
-                      (make-character-buffer minimum-buffer-size
-                                             preferred-buffer-size
+                      (make-character-buffer block-size
+                                             blocks-per-buffer
                                              #'flush-buffer))))
       (setf (%character-buffer stream) buffer))))
 

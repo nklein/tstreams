@@ -29,7 +29,8 @@
                                        &key &allow-other-keys)
   (setf (%buffer-array self) (make-array (buffer-preferred-size self)
                                          :element-type 'character
-                                         :fill-pointer 0)))
+                                         :fill-pointer 0
+                                         :adjustable t)))
 
 (defmethod flush-buffer :after ((self line-char-buffer) &optional force)
   (declare (ignore force))
@@ -52,7 +53,8 @@
                                        &key &allow-other-keys)
   (setf (%buffer-array self) (make-array (buffer-preferred-size self)
                                          :element-type 'character
-                                         :fill-pointer 0)))
+                                         :fill-pointer 0
+                                         :adjustable t)))
 
 (defmethod flush-buffer :around ((self simple-char-buffer) &optional force)
   (let* ((array (buffer-array self))
@@ -76,14 +78,13 @@
              (array-total-size array))
       (flush-buffer self))))
 
-(defun make-line-buffer (size callback)
-  (make-instance 'line-buffer
-                 :preferred-size size
+(defun make-line-buffer (lines-per-buffer callback)
+  (make-instance 'line-char-buffer
+                 :preferred-size lines-per-buffer
                  :callback callback))
 
-(defun make-character-buffer (min-size preferred-size callback)
+(defun make-character-buffer (block-size blocks-per-buffer callback)
   (make-instance 'simple-char-buffer
-                 :min-size min-size
-                 :preferred-size (* (ceiling preferred-size min-size)
-                                    min-size)
+                 :min-size block-size
+                 :preferred-size (* blocks-per-buffer block-size)
                  :callback callback))

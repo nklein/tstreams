@@ -1,7 +1,6 @@
 TODO List
 ---------
 
-* Make tests for character-character block sizes/modes
 * Decide how to handle `FILE-POSITION` methods
 * Do `CHARACTER-TO-UTF8-OUTPUT-STREAM`
 * Do `BINARY-TO-BINARY-OUTPUT-STREAM`

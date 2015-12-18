@@ -26,7 +26,11 @@ simply to copy them to the output stream."
 
 (defun make-noop-character-to-character-output-tstream
     (underlying-output-stream
-     &key close-underlying-stream-on-close)
+     &key close-underlying-stream-on-close
+       (block-size 1)
+       (blocks-per-buffer (if (numberp block-size)
+                              512
+                              1)))
   "Create a CHARACTER-TO-CHARACTER-OUTPUT-TSTREAM which takes any
 input characters given to it and passes them along untouched to the
 given character output stream UNDERLYING-OUTPUT-STREAM.
@@ -35,5 +39,7 @@ If CLOSE-UNDERLYING-STREAM-ON-CLOSE is non-NIL then closing the
 returned stream will also close the UNDERLYING-OUTPUT-STREAM."
   (assert (character-output-stream-p underlying-output-stream))
   (make-instance 'character-to-character-output-tstream
+                 :block-size block-size
+                 :blocks-per-buffer blocks-per-buffer
                  :underlying-stream underlying-output-stream
                  :close-underlying-stream close-underlying-stream-on-close))
