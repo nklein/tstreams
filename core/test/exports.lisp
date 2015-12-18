@@ -7,9 +7,11 @@
                                                 fdocumentationp))
     '(#:tstreamp
       #:output-tstream-p
+      #:character-output-stream-p
       #:character-output-tstream-p
       #:character-to-character-output-tstream-p
       #:character-to-binary-output-tstream-p
+      #:binary-output-stream-p
       #:binary-output-tstream-p
       #:binary-to-character-output-tstream-p
       #:binary-to-binary-output-tstream-p))

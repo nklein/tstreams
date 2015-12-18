@@ -2,24 +2,9 @@ TODO List
 ---------
 
 * Decide how to handle `FILE-POSITION` methods
-* Do `CHARACTER-TO-UTF8-OUTPUT-TSTREAM`
 * Do `BINARY-TO-BINARY-OUTPUT-TSTREAM`
 * Do `BINARY-TO-BASE64-OUTPUT-TSTREAM`
 * Input streams...
-
-TSTREAMS-UTF8
--------------
-
-Should be able to:
-
-    (defclass character-to-utf8-output-stream
-        (character-to-binary-output-tstream)
-      ()
-      (:documentation "...XXX..."))
-
-    (defmethod characters-to-binary-output-stream
-        ((self character-to-utf8-output-stream) string stream)
-      (trivial-utf-8:write-utf-8-bytes string stream))
 
 TSTREAMS-BASE64
 ---------------

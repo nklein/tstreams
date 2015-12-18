@@ -8,7 +8,9 @@
   ;; base.lisp
   (:export #:tstreamp)
   ;; output.lisp
-  (:export #:output-tstream-p)
+  (:export #:output-tstream-p
+           #:character-output-stream-p
+           #:binary-output-stream-p)
   ;; output-char.lisp
   (:export #:character-output-tstream-p
            #:characters-to-output-stream)
