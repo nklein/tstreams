@@ -20,17 +20,17 @@
   (check-type block-size (or (integer 1 *) (member :line)))
   (check-type blocks-per-buffer (integer 1 *))
 
-  (flet ((flush-buffer (string)
+  (flet ((consume-buffer (string)
            (characters-to-output-stream stream
                                         string
                                         (underlying-stream stream))))
 
     (let ((buffer (if (eql block-size :line)
                       (make-line-buffer blocks-per-buffer
-                                        #'flush-buffer)
+                                        #'consume-buffer)
                       (make-character-buffer block-size
                                              blocks-per-buffer
-                                             #'flush-buffer))))
+                                             #'consume-buffer))))
       (setf (%character-buffer stream) buffer))))
 
 (defun character-output-tstream-p (obj)
@@ -50,4 +50,4 @@
                              &key abort &allow-other-keys)
   (unless abort
     (let ((force t))
-      (flush-buffer (character-buffer stream) force))))
+      (flush-char-buffer (character-buffer stream) force))))

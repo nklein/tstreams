@@ -2,19 +2,6 @@
 
 (in-package #:tstreams-utf8-test)
 
-(defun buffer-to-vector (buffer)
-  (fast-io::concat-buffer buffer))
-
-(defmacro with-output-to-vector ((var &optional (buffer nil bufferp))
-                                        &body body)
-  (let ((buf (gensym "BUFFER-")))
-    `(let ((,buf ,(if bufferp
-                      buffer
-                      '(make-vector-output-stream))))
-       (with-open-stream (,var ,buf)
-         ,@body
-         (buffer-to-vector (slot-value ,var 'fast-io::buffer))))))
-
 (nst:def-test-group output-utf8 ()
   (nst:def-test character-to-binary-utf8-type
       (:all

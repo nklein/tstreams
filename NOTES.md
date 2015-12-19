@@ -2,7 +2,6 @@ TODO List
 ---------
 
 * Decide how to handle `FILE-POSITION` methods
-* Do `BINARY-TO-BINARY-OUTPUT-TSTREAM`
 * Do `BINARY-TO-BASE64-OUTPUT-TSTREAM`
 * Input streams...
 

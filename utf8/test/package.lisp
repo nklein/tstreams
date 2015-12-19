@@ -6,5 +6,7 @@
                 #:publicp
                 #:fdocumentationp)
   (:import-from #:tstreams-test
-                #:make-vector-output-stream)
+                #:make-vector-output-stream
+                #:buffer-to-vector
+                #:with-output-to-vector)
   (:export #:run-all-tests))

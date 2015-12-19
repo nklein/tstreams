@@ -3,7 +3,7 @@
 (in-package #:tstreams)
 
 (defgeneric add-character-to-buffer (char buffer))
-(defgeneric flush-buffer (buffer &optional force))
+(defgeneric flush-char-buffer (buffer &optional force))
 
 (defclass char-buffer ()
   ((array :reader buffer-array
@@ -13,7 +13,7 @@
    (callback :initarg :callback
              :reader buffer-callback)))
 
-(defmethod flush-buffer ((self char-buffer) &optional force)
+(defmethod flush-char-buffer ((self char-buffer) &optional force)
   (declare (ignore force))
   (let ((array (buffer-array self))
         (callback (buffer-callback self)))
@@ -32,7 +32,7 @@
                                          :fill-pointer 0
                                          :adjustable t)))
 
-(defmethod flush-buffer :after ((self line-char-buffer) &optional force)
+(defmethod flush-char-buffer :after ((self line-char-buffer) &optional force)
   (declare (ignore force))
   (setf (buffer-current-line-count self) 0))
 
@@ -43,7 +43,7 @@
       (incf (buffer-current-line-count self))
       (when (= (buffer-current-line-count self)
                (buffer-preferred-size self))
-        (flush-buffer self)))))
+        (flush-char-buffer self)))))
 
 (defclass simple-char-buffer (char-buffer)
   ((min-size :initarg :min-size
@@ -56,7 +56,7 @@
                                          :fill-pointer 0
                                          :adjustable t)))
 
-(defmethod flush-buffer :around ((self simple-char-buffer) &optional force)
+(defmethod flush-char-buffer :around ((self simple-char-buffer) &optional force)
   (let* ((array (buffer-array self))
          (min-size (buffer-min-size self))
          (fill (fill-pointer array))
@@ -76,7 +76,7 @@
     (vector-push-extend char array)
     (when (= (fill-pointer array)
              (array-total-size array))
-      (flush-buffer self))))
+      (flush-char-buffer self))))
 
 (defun make-line-buffer (lines-per-buffer callback)
   (make-instance 'line-char-buffer

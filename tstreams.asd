@@ -19,6 +19,7 @@
                  (:file "base" :depends-on ("package"
                                             "generics"))
                  (:file "buffer-char" :depends-on ("package"))
+                 (:file "buffer-byte" :depends-on ("package"))
                  (:file "output" :depends-on ("package"
                                               "generics"
                                               "base"))
@@ -30,6 +31,7 @@
                  (:file "output-char-byte" :depends-on ("package"
                                                         "output-char"))
                  (:file "output-byte" :depends-on ("package"
+                                                   "buffer-byte"
                                                    "output"))
                  (:file "output-byte-char" :depends-on ("package"
                                                         "output-byte"))
