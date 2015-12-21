@@ -3,7 +3,7 @@
 (asdf:defsystem #:tstreams-base64
   :description ""
   :author "Patrick Stein <pat@nklein.com>"
-  :version "0.1.20151221"
+  :version "0.2.20151221"
   :license "UNLICENSE"
   :depends-on (#:tstreams #:s-base64)
   :in-order-to ((asdf:test-op (asdf:load-op :tstreams-base64-test)))
@@ -19,9 +19,9 @@
 (asdf:defsystem #:tstreams-base64-test
   :description "Tests for the TSTREAMS package."
   :author "Patrick Stein <pat@nklein.com>"
-  :version "0.1.20151221"
+  :version "0.2.20151221"
   :license "UNLICENSE"
-  :depends-on ((:version #:tstreams-base64 "0.1.20151221")
+  :depends-on ((:version #:tstreams-base64 "0.2.20151221")
                #:tstreams-test
                #:tstreams-utf8
                #:fast-io
