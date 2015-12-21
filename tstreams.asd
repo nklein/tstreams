@@ -3,7 +3,7 @@
 (asdf:defsystem #:tstreams
   :description ""
   :author "Patrick Stein <pat@nklein.com>"
-  :version "0.1.20151216"
+  :version "0.1.20151221"
   :license "UNLICENSE"
   :depends-on (#:trivial-gray-streams)
   :in-order-to ((asdf:test-op (asdf:load-op :tstreams-test)))
@@ -41,9 +41,9 @@
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."
   :author "Patrick Stein <pat@nklein.com>"
-  :version "0.1.20151216"
+  :version "0.1.20151221"
   :license "UNLICENSE"
-  :depends-on ((:version #:tstreams "0.1.20151216")
+  :depends-on ((:version #:tstreams "0.1.20151221")
                #:fast-io
                #:nst)
   :components
