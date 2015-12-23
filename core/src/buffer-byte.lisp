@@ -12,14 +12,6 @@
    (callback :initarg :callback
              :reader buffer-callback)))
 
-(defun flush-byte-buffer (self &optional force)
-  (declare (ignore force))
-  (let ((array (buffer-array self))
-        (callback (buffer-callback self)))
-    (when (plusp (fill-pointer array))
-      (funcall callback (coerce array 'string))
-      (setf (fill-pointer array) 0))))
-
 (defmethod initialize-instance :after ((self byte-buffer)
                                        &key &allow-other-keys)
   (setf (%buffer-array self) (make-array (buffer-preferred-size self)
