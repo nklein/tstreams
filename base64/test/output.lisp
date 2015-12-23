@@ -55,6 +55,32 @@
         (write-byte 103 base64)
         (write-sequence #(104 105 106 107) base64))))
 
+  (nst:def-test binary-to-character-base64-small-buffer
+      (:equalp "YWJjZGVmZ2hp")
+    (with-output-to-string (out)
+      (with-open-stream
+          (base64
+           (tstreams-base64:make-base64-binary-to-character-output-tstream
+              out :preferred-buffer-size 6))
+        (write-sequence #(97 98 99 100) base64)
+        (write-byte 101 base64)
+        (write-byte 102 base64)
+        (write-byte 103 base64)
+        (write-sequence #(104 105) base64))))
+
+  (nst:def-test binary-to-character-base64-small-buffer-not-multiple-of-three
+      (:equalp "YWJjZGVmZ2hp")
+    (with-output-to-string (out)
+      (with-open-stream
+          (base64
+           (tstreams-base64:make-base64-binary-to-character-output-tstream
+              out :preferred-buffer-size 2))
+        (write-sequence #(97 98 99 100) base64)
+        (write-byte 101 base64)
+        (write-byte 102 base64)
+        (write-byte 103 base64)
+        (write-sequence #(104 105) base64))))
+
   (nst:def-test character-to-utf8-to-base64
       (:equalp "z4Ag4qCP4qCKLCDOuCDioK7ioJ7ioIE=")
     (with-output-to-string (out)
