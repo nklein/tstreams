@@ -16,12 +16,10 @@
     :components ((:file "package")
                  (:file "utility" :depends-on ("package"))
                  (:file "generics" :depends-on ("package"))
-                 (:file "base" :depends-on ("package"
-                                            "generics"))
+                 (:file "base" :depends-on ("package"))
                  (:file "buffer-char" :depends-on ("package"))
                  (:file "buffer-byte" :depends-on ("package"))
                  (:file "output" :depends-on ("package"
-                                              "generics"
                                               "base"))
                  (:file "output-char" :depends-on ("package"
                                                    "buffer-char"
@@ -36,7 +34,9 @@
                  (:file "output-byte-char" :depends-on ("package"
                                                         "output-byte"))
                  (:file "output-byte-byte" :depends-on ("package"
-                                                        "output-byte"))))))
+                                                        "output-byte"))
+                 (:file "input" :depends-on ("package"
+                                             "base"))))))
 
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."

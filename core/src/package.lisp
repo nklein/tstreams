@@ -34,4 +34,8 @@
   (:export #:binary-to-binary-output-tstream
            #:binary-to-binary-output-tstream-p
            #:bytes-to-binary-output-stream
-           #:make-noop-binary-to-binary-output-tstream))
+           #:make-noop-binary-to-binary-output-tstream)
+  ;; input.lisp
+  (:export #:input-tstream-p
+           #:character-input-stream-p
+           #:binary-input-stream-p))

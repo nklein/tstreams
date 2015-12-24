@@ -14,7 +14,10 @@
       #:binary-output-stream-p
       #:binary-output-tstream-p
       #:binary-to-character-output-tstream-p
-      #:binary-to-binary-output-tstream-p))
+      #:binary-to-binary-output-tstream-p
+      #:input-tstream-p
+      #:character-input-stream-p
+      #:binary-input-stream-p))
 
   (nst:def-test exports-macros (:each (:all publicp
                                             fdocumentationp))
