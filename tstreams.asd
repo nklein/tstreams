@@ -36,7 +36,10 @@
                  (:file "output-byte-byte" :depends-on ("package"
                                                         "output-byte"))
                  (:file "input" :depends-on ("package"
-                                             "base"))))))
+                                             "base"))
+                 (:file "input-char" :depends-on ("package"
+                                                  "base"
+                                                  "input"))))))
 
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."
