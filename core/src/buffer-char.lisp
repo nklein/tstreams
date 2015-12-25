@@ -3,6 +3,7 @@
 (in-package #:tstreams)
 
 (defgeneric add-character-to-buffer (char buffer))
+(defgeneric get-character-from-buffer (buffer))
 (defgeneric flush-char-buffer (buffer &optional force))
 
 (defclass char-buffer ()
@@ -10,6 +11,8 @@
           :accessor %buffer-array)
    (preferred-size :initarg :preferred-size
                    :reader buffer-preferred-size)
+   (read-position :accessor read-position
+                  :initform 0)
    (callback :initarg :callback
              :reader buffer-callback)))
 
@@ -77,6 +80,19 @@
     (when (= (fill-pointer array)
              (array-total-size array))
       (flush-char-buffer self))))
+
+(defmethod get-character-from-buffer ((self simple-char-buffer))
+  (let ((array (buffer-array self))
+        (callback (buffer-callback self)))
+    (when (= (read-position self)
+             (fill-pointer array))
+      (setf (fill-pointer array) (funcall callback array)
+            (read-position self) 0))
+    (when (< (read-position self)
+             (fill-pointer array))
+      (prog1
+          (aref array (read-position self))
+        (incf (read-position self))))))
 
 (defun make-line-buffer (lines-per-buffer callback)
   (make-instance 'line-char-buffer
