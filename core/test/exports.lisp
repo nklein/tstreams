@@ -17,6 +17,8 @@
       #:binary-to-binary-output-tstream-p
       #:input-tstream-p
       #:character-input-stream-p
+      #:character-input-tstream-p
+      #:character-to-character-input-tstream-p
       #:binary-input-stream-p))
 
   (nst:def-test exports-macros (:each (:all publicp
@@ -26,7 +28,8 @@
   (nst:def-test exports-constructors (:each (:all publicp
                                                   fdocumentationp))
     '(#:make-noop-character-to-character-output-tstream
-      #:make-noop-binary-to-binary-output-tstream))
+      #:make-noop-binary-to-binary-output-tstream
+      #:make-noop-character-to-character-input-tstream))
 
   (nst:def-test exports-output-generics (:each (:all publicp
                                                      genericp

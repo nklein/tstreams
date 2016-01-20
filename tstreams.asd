@@ -39,7 +39,11 @@
                                              "base"))
                  (:file "input-char" :depends-on ("package"
                                                   "base"
-                                                  "input"))))))
+                                                  "input"))
+                 (:file "input-char-char" :depends-on ("package"
+                                                       "base"
+                                                       "input"
+                                                       "input-char"))))))
 
 (asdf:defsystem #:tstreams-test
   :description "Tests for the TSTREAMS package."

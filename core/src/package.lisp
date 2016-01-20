@@ -38,4 +38,9 @@
   ;; input.lisp
   (:export #:input-tstream-p
            #:character-input-stream-p
-           #:binary-input-stream-p))
+           #:binary-input-stream-p)
+  ;; input-char.lisp
+  (:export #:character-input-tstream-p)
+  ;; input-char-char.lisp
+  (:export #:character-to-character-input-tstream-p
+           #:make-noop-character-to-character-input-tstream))
