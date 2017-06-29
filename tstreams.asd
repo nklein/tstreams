@@ -6,9 +6,7 @@
   :version "0.2.20151221"
   :license "UNLICENSE"
   :depends-on (#:trivial-gray-streams)
-  :in-order-to ((asdf:test-op (asdf:load-op :tstreams-test)))
-  :perform (asdf:test-op (o c)
-             (uiop:symbol-call :tstreams-test :run-all-tests))
+  :in-order-to ((asdf:test-op (asdf:test-op :tstreams-test)))
   :components
   ((:static-file "README.md")
    (:static-file "NOTES.md")
@@ -53,6 +51,8 @@
   :depends-on ((:version #:tstreams "0.2.20151221")
                #:fast-io
                #:nst)
+  :perform (asdf:test-op (o c)
+             (uiop:symbol-call :tstreams-test :run-all-tests))
   :components
   ((:module "core/test"
     :components ((:file "package")

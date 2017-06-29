@@ -6,9 +6,7 @@
   :version "0.2.20151221"
   :license "UNLICENSE"
   :depends-on (#:tstreams #:s-base64)
-  :in-order-to ((asdf:test-op (asdf:load-op :tstreams-base64-test)))
-  :perform (asdf:test-op (o c)
-             (uiop:symbol-call :tstreams-base64-test :run-all-tests))
+  :in-order-to ((asdf:test-op (asdf:test-op :tstreams-base64-test)))
   :components
   ((:static-file "README.md")
    (:static-file "NOTES.md")
@@ -26,6 +24,8 @@
                #:tstreams-utf8
                #:fast-io
                #:nst)
+  :perform (asdf:test-op (o c)
+             (uiop:symbol-call :tstreams-base64-test :run-all-tests))
   :components
   ((:module "base64/test"
     :components ((:file "package")

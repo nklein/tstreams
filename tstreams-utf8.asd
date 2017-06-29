@@ -6,9 +6,7 @@
   :version "0.2.20151221"
   :license "UNLICENSE"
   :depends-on (#:tstreams #:trivial-utf-8)
-  :in-order-to ((asdf:test-op (asdf:load-op :tstreams-utf8-test)))
-  :perform (asdf:test-op (o c)
-             (uiop:symbol-call :tstreams-utf8-test :run-all-tests))
+  :in-order-to ((asdf:test-op (asdf:test-op :tstreams-utf8-test)))
   :components
   ((:static-file "README.md")
    (:static-file "NOTES.md")
@@ -25,6 +23,8 @@
                #:tstreams-test
                #:fast-io
                #:nst)
+  :perform (asdf:test-op (o c)
+             (uiop:symbol-call :tstreams-utf8-test :run-all-tests))
   :components
   ((:module "utf8/test"
     :components ((:file "package")
